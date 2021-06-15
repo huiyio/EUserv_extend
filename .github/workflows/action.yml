@@ -1,7 +1,12 @@
-name: 'EUserv Auto Extend'
+nname: 'EUserv Auto Extend'
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '30 2 * * 0,3'
 
 jobs:
   auto_renew:
@@ -24,7 +29,4 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          TOKEN: ${{ secrets.TOKEN }}
         run: python main.py
-schedule:
-  - cron: '50 1 * * 0,3'
